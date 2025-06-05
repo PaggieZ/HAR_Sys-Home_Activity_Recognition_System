@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from state_tracker import *
 import plotData as plotData
 from sensor_data_preprocessor import *
+import csv
 
 
 def extract_features(rawFileName, sampleDuration, featureFileName, rawDataCols, featureDataCols, startDate = None, endDate = None):
@@ -43,6 +44,12 @@ def extract_features(rawFileName, sampleDuration, featureFileName, rawDataCols, 
     with open(rawFileName, "r") as f:
         rawContent = f.read()
 
+    # create feature file
+    with open(featureFileName, mode="w", newline="") as file:
+        writer = csv.writer(file)
+        # Write the header
+        writer.writerow(featureDataCols)
+
     ## loop through the raw content, seperate sensor data by sampleDuration, calculate features, populate feature file
     # need to skip the first four lines of data, related to Zigbee
     sampleData = pd.DataFrame(columns = rawDataCols) # a data frame, stores lines of sensor data within a sample period
@@ -59,6 +66,9 @@ def extract_features(rawFileName, sampleDuration, featureFileName, rawDataCols, 
 
         # initialize variables at the start of new sample period
         if isNewSamplePeriod:
+            print()
+            print("******" + str(currLineTime) + "******")
+            print("reading raw sensor data...")
             startTime = currLineTime
             sampleData = pd.DataFrame(columns = rawDataCols)
             isNewSamplePeriod = False
@@ -76,6 +86,7 @@ def extract_features(rawFileName, sampleDuration, featureFileName, rawDataCols, 
 
         ## get all sensor data for the current sample period
         if not isNewSamplePeriod: # if at the begining or the middle of the sample period
+           
             # append one row to the sampleData dataframe
             newRawRow = get_newRow_from_line(line) # returns a data frame
             sampleData = pd.concat([sampleData, newRawRow], ignore_index = True)
@@ -89,8 +100,9 @@ def extract_features(rawFileName, sampleDuration, featureFileName, rawDataCols, 
             newFeatureRow = get_feature_row(sampleData, startTime, endTime) # returns a data frame
             if newFeatureRow is None:
                 continue
+            print("writing to feature file...")
             newFeatureRow.to_csv(featureFileName, mode =  'a', index = False, header = False)
-            
+
 
 def get_newRow_from_line(line):
     '''
@@ -112,6 +124,8 @@ def get_feature_row(sampleData, startTime, endTime):
         'startTime': startTime, 
         'endTime': endTime, 
     }
+    print("startTime: " + str(startTime))
+    print("endTime: " + str(endTime))
 
     # calculate feature values
     stats_dict, durations_dict = count_bath_features(sampleData)
@@ -141,7 +155,7 @@ def get_isNewSamplePeriod(currLineTime, startTime, sampleDuration):
 def is_before_startDate(currLineTime, startDate):
     '''
     return True/False
-    '''''''''
+    '''
     startDatetime = datetime(int(startDate.split('-')[0]), int(startDate.split('-')[1]), int(startDate.split('-')[2]))
     if currLineTime < startDatetime:
         return True
@@ -203,6 +217,7 @@ def count_bath_features(sampleData, threshold_min=1, max_temp=37, threshold_ligh
     # Apply filter, calculate area, and determine night and sleep time
     preprocessor = sensor_data_preprocessor(sampleData)
     resampled_df = preprocessor.resample_light(sensor_location="BedroomAArea")
+    print("resampling light data in bedroom")
     if resampled_df is None:
         wakeTime_hr = 7 
         wakeTime_min = 0
@@ -226,38 +241,44 @@ def count_bath_features(sampleData, threshold_min=1, max_temp=37, threshold_ligh
         except Exception as e:
             wakeTime_hr = 7
             wakeTime_min = 0
-
-
+    print("sleepTime: " + str(sleepTime_hr) + ":" + str(sleepTime_min))
+    print("wakeTime: " + str(wakeTime_hr) + ":" + str(wakeTime_min))
+    print("filtering motion sensor data")
     # Apply rolling max filter to bathroom toilet motion sensor data
     resampled_df = preprocessor.resample_motion(sensor_location='BathroomAToilet')
     if resampled_df is None: 
         return None, None
     filtered_df = preprocessor.apply_filters_motion(resampled_df, "sensorValue")
-    
+
+    print("counting bathroom trips and durations")
     # Count bathroom trips and durations 
     Bathroom_State_Tracker = BathroomStateTracker(IDLE, nighttime_hr=sleepTime_hr, nighttime_min=sleepTime_min, 
                                                     daytime_hr=wakeTime_hr, daytime_min=wakeTime_min)    
     for i in range (0, filtered_df.shape[0]):
         Bathroom_State_Tracker.input(filtered_df.loc[i])
-
+    
 
     trip_stats_dict, trip_times_dict = Bathroom_State_Tracker.get_trip_stats()
     
+    print("count toilet_motion activation")
     # Determine bathroom sensor activation counts 
     motion_toilet_count = len(sampleData[(sampleData['sensorID'].str.contains('Bathroom')) & 
                                          (sampleData['sensorID'].str.contains('Toilet')) &
                                          (sampleData['message'].str.contains('Motion')) &
                                          (sampleData['sensorValue'] == 'ON')])
-
+    
+    print("count toilet_light activation")
     light_toilet_count = len(sampleData[(sampleData['sensorID'].str.contains('Bathroom')) & 
                                          (sampleData['sensorID'].str.contains('Toilet')) &
                                          (sampleData['message'].str.contains('Light'))])
 
+    print("count sink_motion activation")
     motion_sink_count = len(sampleData[(sampleData['sensorID'].str.contains('Bathroom')) & 
                                          (sampleData['sensorID'].str.contains('Sink')) &
                                          (sampleData['message'].str.contains('Motion')) &
                                          (sampleData['sensorValue'] == 'ON')])
-
+    
+    print("count sink_light activation")
     light_sink_count = len(sampleData[(sampleData['sensorID'].str.contains('Bathroom')) & 
                                          (sampleData['sensorID'].str.contains('Sink')) &
                                          (sampleData['message'].str.contains('Light'))])

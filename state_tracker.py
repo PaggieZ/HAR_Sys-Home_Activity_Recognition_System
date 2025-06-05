@@ -326,7 +326,7 @@ class BathroomStateTracker:
         if is_night:
             self.trip_times_dict["Night"].append((this_trip_time))
         else:
-            self.trip_times_dict["Delay"].append((this_trip_time))
+            self.trip_times_dict["Day"].append((this_trip_time))
     
 
     def read_dataframe_info(self, dataframe_row):
