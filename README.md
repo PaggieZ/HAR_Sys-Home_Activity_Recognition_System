@@ -1,5 +1,4 @@
-# HAR Sys (Home Activity Recognition System Public Repository)
-
+# Smart-Home-Device-Recognition-Algorithm
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
