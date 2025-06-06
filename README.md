@@ -2,7 +2,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The project utilizes the CASAS dataset to train an ML model to predict the presence of UTI (urinary tract infection) and health features valuable for monitoring. The ML model was can be deployed on a Raspberry Pi for on-site prediction and the results can be sent to an Android phone app for clinical monitoring. 
+The project utilizes the CASAS dataset to train an ML model to predict the presence of UTI (urinary tract infection) and health features valuable for monitoring. The ML model was deployed on a Raspberry Pi for on-site prediction and the results can be sent to an Android phone app for clinical monitoring. 
 
 The **main** branch includes all files used in the two data processing pipelines, excluding weights, raw sensor data, and activity-labeled sensor data. \
 The **Bluetooth-Branch** branch includes all files actually uploaded onto the Raspberry Pi.\
@@ -15,7 +15,7 @@ To get a local copy up and running, follow these simple example steps.
 
 ### Prerequisites
 * Raspberry Pi 4B configured with SPP (serial port profile) for Bluetooth communication.
-* Android phone with APK file found at the [**app** branch](https://github.com/PaggieZ/Smart-Home-Activity-Recognition-System/tree/app)
+* Android phone with APK file found at the **app** branch.
 
 ### Installation 
 1. To deploy the code onto the microcontroller, clone the Bluetooth-Branch branch on the Raspberry Pi.
@@ -25,8 +25,8 @@ To get a local copy up and running, follow these simple example steps.
 2. Ensure the Raspberry Pi is discoverable.
 3. On the phone app's side, connect with the Raspberry Pi via the phone's settings if this is the first time connecting the two devices.
 4. Open the app and navigate to the Bluetooth Screen via the bottom navigation window.
-5. Press "Show Paired Devices" and ensrue the Raspberry Pi pops up.
-6. Open a bluetooth channel on the Raspberry Pi's side:
+5. Press "Show Paired Devices" and ensure the Raspberry Pi pops up.
+6. Open a Bluetooth channel on the Raspberry Pi's side:
    ```sh
    hciconfig
    sudo rfcomm watch hci0
