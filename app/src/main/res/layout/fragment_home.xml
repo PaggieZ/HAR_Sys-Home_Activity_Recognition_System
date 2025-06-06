@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment"
+    android:paddingTop="?attr/actionBarSize">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <Button
+                android:id="@+id/date_button"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/home_date"
+                android:backgroundTint="@color/denim"
+                />
+
+            <Button
+                android:id="@+id/toilet_button"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/home_toilet_trends"
+                android:backgroundTint="@color/denim"
+                />
+
+            <Button
+                android:id="@+id/sleep_button"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:text="@string/home_sleep_trends"
+                android:backgroundTint="@color/denim" />
+
+            <Button
+                android:id="@+id/uti_button"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="@string/home_health_screening"
+                android:backgroundTint="@color/denim" />
+
+            <Button
+                android:id="@+id/battery_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/denim"
+                android:text="@string/home_battery_good" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:backgroundTint="@color/design_default_color_background" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

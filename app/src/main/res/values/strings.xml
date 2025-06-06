@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">HAR</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="home_date">Selected Date</string>
+    <string name="home_time">Time</string>
+    <string name="home_sensor">sensor</string>
+    <string name="home_feature">Feature</string>
+    <string name="navigation_home">Home</string>
+    <string name="title_toilet">Toilet</string>
+    <!-- battery names<-->
+    <string name="KitchenASink">Bath_Lights</string>
+    <string name="BathroomAToilet">BathroomAToilet</string>
+    <string name="KitchenADiningChair">KitchenADiningChair</string>
+    <string name="OfficeAChair">KitchenADiningChair</string>
+    <string name="BedroomAArea">BedroomAArea</string>
+    <string name="MainEntryway">MainEntryway</string>
+    <string name="KitchenARefrigerator">KitchenARefrigerator</string>
+    <string name="BedroomADoor">BedroomADoor</string>
+    <string name="HallwayA">HallwayA</string>
+    <string name="BathroomASink">BathroomASink</string>
+    <string name="OfficeAArea">OfficeAArea</string>
+    <string name="BedroomABed">BedroomABed</string>
+
+    <string name="Scan">Scan</string>
+    <string name="Bluetooth">Bluetooth</string>
+    <string name="title_sleep">Sleep</string>
+    <string name="title_battery">Battery</string>
+    <string name="option_pair">Pair</string>
+    <string name="fragment_sleep_trends">Sleep Trends</string>
+    <string name="fragment_toilet_trends">Toilet Trends</string>
+    <string name="fragment_battery_percentages">Battery Percentages</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_bluetooth_description">Bluetooth: Pair Device</string>
+    <string name="home_battery_default">Low battery warning for sensors</string>
+    <string name="home_battery_good">Low battery warning for sensors</string>
+    <string name="home_sleep_trends">Sleep</string>
+    <string name="home_toilet_trends">Toilet</string>
+    <string name="home_health_screening">UTI Screening</string>
+    <string name="home_connected">Connected to Home TM003</string>
+
+    <string name="bt_button_show_paired_devices">Show Paired Devices</string>
+    <string name="bt_button_connect_to_device">Connect To Device</string>
+    <string name="bt_button_send_data">Send Data</string>
+    <string name="bt_button_discover">Discover Devices</string>
+    <string name="bt_button_get_health_data">Get Health Data</string>
+    <string name="debugging_sent_data">Send data: Hello</string>
+
+    <string name="bt_connected_to">Connected to: %s</string>
+    <string name="bt_paired_devices">Paired Devices: %s</string>
+    <string name="bt_sent_data">Sent data: %s</string>
+    <string name="bt_no_paired_devices">No paired devices found.</string>
+    <string name="bt_retrieving_health_data">Retrieving health data from connected device …</string>
+
+
+    <string name="home_health_update">UTI Screening: %s</string>
+    <string name="home_today_date">: Today is: %s</string>
+    <string name="home_today_sleep_duration_good">Last night\'s time in bed: \n%s \n This fulfills the recommendation of 8 hours!</string>
+    <string name="home_today_sleep_duration_less">Last night\'s time in bed: \n%s \n This is less than the recommendation of 8 hours! </string>
+    <string name="home_some_batteries_low">Sensor(s) %s are low in battery and require a battery change soon. </string>
+    <string name="home_battery_state_good">All sensors have at least 30% in battery.</string>
+    <string name="home_unable_exact_sleep">Last night\'s time in bed: %s \n An approximate sleep duration was unable to be captured last night.</string>
+    <string name="home_sleep_format_error">Invalid Sleep Duration Format</string>
+    <string name="home_toilet_total_count">Total number of toilet trips: %s </string>
+    <string name="bt_select_date">Please select a date here. </string>
+</resources>

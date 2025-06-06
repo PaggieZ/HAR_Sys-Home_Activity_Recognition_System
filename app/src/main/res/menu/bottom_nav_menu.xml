@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home"
+        android:title="@string/navigation_home" />
+
+    <item
+        android:id="@+id/navigation_sleep"
+        android:icon="@drawable/bed2"
+        android:title="@string/title_sleep" />
+
+    <item
+        android:id="@+id/navigation_toilet"
+        android:icon="@drawable/toilet"
+        android:title="@string/title_toilet" />
+
+    <item
+        android:id="@+id/navigation_battery"
+        android:icon="@drawable/battery"
+        android:title="@string/title_battery" />
+
+    <item
+        android:id="@+id/navigation_bluetooth"
+        android:icon="@drawable/bluetooth"
+        android:title="@string/Bluetooth" />
+
+</menu>
